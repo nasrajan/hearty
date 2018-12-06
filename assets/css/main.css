@@ -56,36 +56,6 @@ body {
 }
 
 
-.glyphicon-star:hover {
-    color:orange;
-}
-
-.rating {
-   unicode-bidi: bidi-override;
-   /*  direction: rtl;*/
-}
-.rating > span {
-    /*display: inline-block;
-    position: relative;
-    width: 1.1em;*/
-}
-.rating > span:hover:before,
-.rating > span:hover ~ span:before {
-   /* content: "\2605";
-    position: absolute;
-    color:orange;
-   */
-}
-
-.rating > span:active ~ span:before {
-  /*  content: "\2605";
-    position: absolute;
-    color:orange;
-  */
-}
-.ratingdone > span  {
-    color:orange;
-}
 
 .nsbutton {
     display:block;

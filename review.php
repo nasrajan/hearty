@@ -29,83 +29,11 @@ if (!empty($_POST)) {
 
 ?>
 
-<script>
-    $(document).ready(function(){
-        var ddData = [
-    {
-        text: "Facebook",
-        value: 1,
-        selected: false,
-        description: "Description with Facebook",
-        imageSrc: "http://i.imgur.com/XkuTj3B.png"
-    },
-    {
-        text: "Twitter",
-        value: 2,
-        selected: false,
-        description: "Description with Twitter",
-        imageSrc: "http://i.imgur.com/8ScLNnk.png"
-    },
-    {
-        text: "LinkedIn",
-        value: 3,
-        selected: true,
-        description: "Description with LinkedIn",
-        imageSrc: "http://i.imgur.com/aDNdibj.png"
-    },
-    {
-        text: "Foursquare",
-        value: 4,
-        selected: false,
-        description: "Description with Foursquare",
-        imageSrc: "http://i.imgur.com/kFAk2DX.png"
-    }
-];
-$('#myDropdown').ddslick({
-    data:ddData,
-    width:300,
-    selectText: "Select your preferred social network",
-    imagePosition:"right",
-    onSelected: function(selectedData){
-        //callback function: do something with selectedData;
-    }   
-});
-        
-        $("span").click(function(){
-            var starid = $(this).attr("id");
-            for (var i=1; i<=starid;i++) {
-                
-                $("#"+i).css("content", "\2605");
-                $("#"+i).css("position", "absolute");
-                $("#"+i).css("color", "orange");
-            }
-            
-            
-           
-        });
-         $("span").hover(function(){
-             $(this).prevUntil("div").text("\2605");
-             $(this).prevUntil("div").css("position", "absolute");
-             $(this).prevUntil("div").css("color", "orange");
-           
-           
-        });
-    });
-   /*function starsclicked(star) 
-   {
-       alert(star.id);
-       for (int i=1; i<=star.id; i++) {
-           pstar = document.getElementById(i);
-           pstar.content = "\2605";
-           pstar.style.color = 'orange';
-       }
-   }
-   */
-</script>    
+  
 <section id="three" class="wrapper">
     <div class="inner">
         <header class="align-center">
-            <h2>Login</h2>
+            <h2>Product Review</h2>
 
         </header>
         <form action="review.php" method="POST" name="loginForm">
