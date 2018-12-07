@@ -2,7 +2,7 @@
 //program for market place
 //Read the json encoded top 5 products from member websites
 //json_decode and process
-$url= "http://milestogo.in/market/auth.php";
+$url= "http://softwareguy.tech/auth.php";
 
 
 $fields = array(

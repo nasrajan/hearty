@@ -30,9 +30,10 @@ if (!empty($_POST)) {
     $product_id = $post_values['product_id'];
      $rating = $post_values['rating'];
      $review = $post_values['review'];
+     $username = $post_values['username'];
      
-     $str = "'0', '".$product_id."' ,'".$rating."','".$review."'";
-     $query = "INSERT INTO product_rating (user_id, product_id, star, review) VALUES(".$str.");";
+     $str = "'0', '".$product_id."' ,'".$username."' , '".$rating."','".$review."'";
+     $query = "INSERT INTO product_rating (user_id, product_id, username, star, review) VALUES(".$str.");";
      mysqli_query($link, $query);
      header("Location: product_details.php?id=".$product_id);
 }
@@ -47,7 +48,8 @@ if (!empty($_POST)) {
 
         </header>
         <form action="review.php" method="POST" name="loginForm">
-            <input type="hidden" name="product_id" value="<?php print $product_id; ?>"/>    
+            <input type="hidden" name="product_id" value="<?php print $product_id; ?>"/> 
+            <input type="hidden" name="username" value="<?php print $_SESSION['username']; ?>"/>
             <h4>How Many stars for this product? </h4>
             <div id="myDropdown"></div>
             <select name="rating">
