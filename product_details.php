@@ -9,6 +9,7 @@ if (isset($_GET['id'])) {
     $prod_id = $_GET['id']; // TODO: sanitize input. outside the scope of lab for now.
 }
 
+
 // -- Start cookie tracking for the visited product.
 if (!isset($_COOKIE['prev5'])) { // check if cookie is there for tracking previous 5 visits
     $prev5 = array();           // If no, initialize and push the current product id to array
@@ -51,7 +52,9 @@ $avgresult = mysqli_query($link, "SELECT AVG(star) as  avg FROM product_rating W
 $avgrow = mysqli_fetch_row($avgresult);
 
 mysqli_query($link, "UPDATE product_visits SET number_visits = number_visits + 1 WHERE product_id='".$prod_id."'");
+
 ?>
+
 <section id="main" class="wrapper">
     <div class="inner">
         <header class="align-center">
@@ -77,7 +80,13 @@ mysqli_query($link, "UPDATE product_visits SET number_visits = number_visits + 1
                     <h4><?php print $row['prod_name']; ?></h4>
                     <p><?php print $row['category']; ?></p>
                     <p>Price: $<?php print $row['prod_price']; ?>.00</p>
-                    
+                    <form name="cart" method="post" action="cart.php">
+                        <input type="hidden" name="product_id" value="<?php print $row['id']; ?>">
+                        <input type="hidden" name="product_image" value="<?php print $row['prod_image']; ?>">
+                        <input type="hidden" name="product_name" value="<?php print $row['prod_name']; ?>">
+                       
+                      <button id="cart" class="nsbutton">Add to Cart</button>
+                    </form>
                     <div class="rating">
                         <a href="#ratingsform">
                             <?php for ($i = 1; $i <= $avgrow[0]; $i++) { ?>

@@ -24,9 +24,6 @@ while ($row = mysqli_fetch_assoc($result)) {
 }
 
 $json = json_encode($top5);
-
-
-
 print $json;
 function truncate_text($str, $limit=100) {
     if (strlen($str) <= $limit) return $str;
