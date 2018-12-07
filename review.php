@@ -1,8 +1,18 @@
 <?php
 
+session_start();
 include 'includes/header.php';
 include 'includes/config.php'; // configuration settings, including username and password
 
+
+
+if(!isset($_SESSION['loggedin'])) {
+    print "<h4>You need to login before adding Review. Redirecting to Login page in a moment... or click <a href='login.php'>here</a> to go to "
+    . "login page straightaway</h4>";
+    print '<meta http-equiv="refresh" content="3;url=login.php">';
+    exit;
+
+}
 if (!empty($_GET)) {
     
     //$product_id = $_GET['product_id'];

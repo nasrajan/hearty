@@ -3,6 +3,7 @@ session_start();
 include 'includes/header.php';
 include_once 'includes/config.php';
 
+
 $result = mysqli_query($link, "select * from products");
 ?>
 <section id="main" class="wrapper">

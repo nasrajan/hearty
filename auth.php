@@ -35,11 +35,12 @@ $data = curl_exec($ch);
 curl_close($ch);
 
 
-if (!empty($data) && $data == "true") {
+if (!empty($data) && $data == "1") {
+    
     session_start();
     $_SESSION['loggedin']= true;
     $_SESSION['username'] = $fields['username'];
-    header("Location: account.php");
+    header("Location: products.php");
 } else {
    header("Location: login.php?error=loginfailed");
     

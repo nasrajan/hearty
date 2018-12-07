@@ -1,11 +1,21 @@
 <?php
 session_start();
+    
+
+if(!isset($_SESSION['loggedin'])) {
+    print "<h4>You need to login before adding products to cart. Redirecting to Login page in a moment... or click <a href='login.php'>here</a> to go to "
+    . "login page straightaway</h4>";
+    print '<meta http-equiv="refresh" content="3;url=login.php">';
+    exit;
+
+}
+
 if (isset($_GET) && isset($_GET['ac']) && $_GET['ac'] == "delete") {
     unset($_SESSION['products'][$_GET['id']]);
     $_SESSION["products"] = array_values($_SESSION["products"]);
 
   // header("Location: cart.php");
-    print_r($_SESSION);
+   
 }
 include 'includes/header.php';
 include_once 'includes/config.php';

@@ -17,9 +17,14 @@ include 'includes/config.php'; // configuration settings, including username and
     }
 }*/
 
-            
+if (isset($_GET) && !empty($_GET['error'])) {
+    
+    $error = "Login Failed. Please Retry";
+}  else {
+    $error="";
+}       
 
-?>
+?>  
 
 
 <section id="three" class="wrapper">
@@ -30,6 +35,7 @@ include 'includes/config.php'; // configuration settings, including username and
         </header>
         <form action="auth.php" method="POST" name="loginForm">
             <label class="error"><?php echo $error; ?></label>
+            <br/>
             Username: &nbsp; <input type="text" name="username" required width="50"><br>
             Password: &nbsp;<input type="password" name="password" required><br>
             <input type="hidden" name="returnurl" value="http://localhost/login.php"/>
