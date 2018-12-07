@@ -50,6 +50,7 @@ $ratingsresult = mysqli_query($link, "SELECT * FROM product_rating WHERE product
 $avgresult = mysqli_query($link, "SELECT AVG(star) as  avg FROM product_rating WHERE product_id='".$prod_id."' GROUP BY product_id");
 $avgrow = mysqli_fetch_row($avgresult);
 
+// For easiness, I inserted all product id's in product_visits in advance, with number_visits=0
 mysqli_query($link, "UPDATE product_visits SET number_visits = number_visits + 1 WHERE product_id='".$prod_id."'");
 ?>
 <section id="main" class="wrapper">
