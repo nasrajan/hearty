@@ -50,7 +50,7 @@ $ratingsresult = mysqli_query($link, "SELECT * FROM product_rating WHERE product
 $avgresult = mysqli_query($link, "SELECT AVG(star) as  avg FROM product_rating WHERE product_id='".$prod_id."' GROUP BY product_id");
 $avgrow = mysqli_fetch_row($avgresult);
 
-
+mysqli_query($link, "UPDATE product_visits SET number_visits = number_visits + 1 WHERE product_id='".$prod_id."'");
 ?>
 <section id="main" class="wrapper">
     <div class="inner">
@@ -103,7 +103,7 @@ $avgrow = mysqli_fetch_row($avgresult);
 
         </div>
         <a name="ratingsform"
-        <a href="review.php?product_id=1" class="nsbutton">Review this product</a>
+        <a href="review.php?product_id=<?php print $prod_id; ?>" class="nsbutton">Review this product</a>
             
         <h2>Customer Reviews</h2>      
         <div class="ratingdone">
