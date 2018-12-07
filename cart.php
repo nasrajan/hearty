@@ -85,6 +85,7 @@ if (isset($_POST)) {
             </tr>
         <?php } ?>   
         </table>
+        <a href="products.php" class="nsbutton">Continue Shopping</a>
 
         </div>
 
