@@ -5,7 +5,7 @@
 include_once 'includes/config.php';
 
 
-$query = "SELECT p.id, p.prod_name, p.prod_description, number_visits "
+$query = "SELECT p.id, p.prod_name, p.prod_description,p.prod_image, number_visits "
         . "FROM products p, `product_visits` pv "
         . "WHERE p.id = pv.product_id "
         . "ORDER BY number_visits DESC LIMIT 5";
@@ -16,6 +16,7 @@ $top5 = array();
 $item = array();
 
 while ($row = mysqli_fetch_assoc($result)) {
+     $item["product_image"] = urlencode("http://nasrajan.theeram.net/images/".$row['prod_image']);
      $item["product_id"] = $row['id'];
      $item["product_name"] = $row['prod_name'];
      $item["product_description"] = utf8_encode(truncate_text($row['prod_description']));
