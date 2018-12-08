@@ -59,7 +59,7 @@ if(isset($_POST['submit']))
 {
     
     
-    $to = 'supriyajain3010@gmail.com';
+    $to = 'nasrajan@gmail.com';
     $firstname = $_POST["name"];
     $email= $_POST["email"];
     $text= $_POST["address"];
