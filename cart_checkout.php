@@ -51,7 +51,7 @@ if (!empty($result)) {
     
     
     
-if(isset($_POST['checkout']))
+if(isset($_POST['submit']))
 {
     $cart_string = $_POST['cart_string'];
     
@@ -84,10 +84,11 @@ if(isset($_POST['checkout']))
     $message = $messagestr;
     $message .= '</table>';
 
-    if (@mail($to, $email, $message, $headers))
+    if (mail($to, $email, $message, $headers))
     {
         $msg=  'Thank you. Your Order has been sent';
-        print $message;
+        header("Location: products.php?$msg");
+        
     }else{
         echo 'failed';
     }
