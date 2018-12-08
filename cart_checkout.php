@@ -2,44 +2,59 @@
 include_once 'includes/config.php';
 include 'includes/header.php';
 
-#$product_id = $_GET['id'];
-     
+if (isset($_GET['id'])) {
+    $cart_id = $_GET['id'];
+}
+if (isset($_POST['cart_id'])) {
+    $cart_id = $_POST['cart_id'];
+}  
+
    
-/*$query = "SELECT p.product_id, p.product_name, p.product_price, s.product_quantity "
+$query = "SELECT p.product_id, p.product_name, p.product_price, s.product_quantity "
         . "FROM products p, `shopping_cart` s "
-        . "WHERE s.Shopping_id = 1  and p.product_id = s.product_id";
- * $result = mysqli_query($link, $query);
- * 
- */
+        . "WHERE  p.product_id = s.product_id AND s.cart_id=".$cart_id;
+  $result = mysqli_query($link, $query);
+  
+ 
 
 
-
-/*while ($row = mysqli_fetch_assoc($result)) {
-     $item["product_id"] = $row['product_id'];
-     $item["product_name"] = $row['product_name'];
-     $item["product_price"] = $row['product_price'];
-     $item["product_quantity"] = $row['product_quantity'];
-     $top5[] = $item;
-}
- * 
- */
-
-
-//print_r($_POST['cart_details']);
-
-if (isset($_POST['cart_details'])) {
-    $cart_details = $_POST['cart_details'];
-    $cart = json_decode(htmlspecialchars_decode($cart_details));
-    var_dump($cart_details);
-    var_dump($cart);
-
+if (!empty($result)) {
+    while ($row = mysqli_fetch_assoc($result)) {
+         $item["product_id"] = $row['product_id'];
+         $item["product_name"] = $row['product_name'];
+         $item["product_price"] = $row['product_price'];
+         $item["product_quantity"] = $row['product_quantity'];
+         $top5[] = $item;
+    }
     
+    $messagestr = "";
+    $messagestr .= '<table>';
+    $messagestr .= '<tr>'
+               . '<th>Item</price>'
+            . '<th>Price</th>'
+            . '<th>Quantity</th>'
+            . '<th>Total</th>'
+            . '</tr>';
+    foreach($top5 as $item) {
+        $messagestr .= '<tr>';
+        $messagestr .=  '<td>'.$item->product_name.'</td>';
+        $messagestr .=  '<td>'.$item->product_price.'</td>';
+        $messagestr .=  '<td>'.$item->quantity.'</td>';
+        $messagestr .=  '<td>'.$item->product_price * $item->product_quantity.'</td>';
+       
+       $messagestr .=   '</tr>';
+    }
+    $messagestr .= '</table>';
 }
-if(isset($_POST['submit']))
+  
+ 
+    
+    
+    
+if(isset($_POST['checkout']))
 {
+    $cart_string = $_POST['cart_string'];
     
-    var_dump($cart_details);
-    var_dump($cart);
     $to = 'supriyajain3010@gmail.com';
     $firstname = $_POST["name"];
     $email= $_POST["email"];
@@ -66,15 +81,7 @@ if(isset($_POST['submit']))
             . '<th>Total</th>'
             . '</tr>';
     
-    foreach($cart as $item) {
-        $message .= '<tr>';
-        $message .=  '<td>'.$item->product_name.'</td>';
-        $message .=  '<td>'.$item->product_price.'</td>';
-        $message .=  '<td>'.$item->product_quantity.'</td>';
-        $message .=  '<td>'.$item->product_price * $item->product_quantity.'</td>';
-       
-       $message .=   '</tr>';
-    }
+    $message = $messagestr;
     $message .= '</table>';
 
     if (@mail($to, $email, $message, $headers))
@@ -117,11 +124,11 @@ if(isset($_POST['submit']))
 
         <label for="lname">Email</label>
         <input type="text" id="email" name="email" placeholder="Enter Your Email..">
-        <?php var_dump($cart_details); ?>
-        <input type="hidden" name="cart_details" value="<?php print $cart_details; ?>">
-
+        
+        <input type="hidden" name="cart_id" value="<?php print $cart_id; ?>"/>
         <input class="nsbutton" type="submit" name="submit"  value="Submit">
   </form>
+        
         <a href="products.php" class="nsbutton">Continue Shopping</a>
 
         </div>

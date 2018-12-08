@@ -85,6 +85,7 @@ mysqli_query($link, "UPDATE product_visits SET number_visits = number_visits + 1
                         <input type="hidden" name="product_id" value="<?php print $row['id']; ?>">
                         <input type="hidden" name="product_image" value="<?php print $row['prod_image']; ?>">
                         <input type="hidden" name="product_name" value="<?php print $row['prod_name']; ?>">
+                        <input type="hidden" name="product_price" value="<?php print $row['prod_price']; ?>">
                        
                       <button id="cart" class="nsbutton">Add to Cart</button>
                     </form>

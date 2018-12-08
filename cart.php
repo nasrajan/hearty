@@ -27,6 +27,7 @@ if (isset($_POST)) {
     $array['product_id'] = $_POST['product_id'];
     $array['product_image'] = $_POST['product_image'];
     $array['product_name'] = $_POST['product_name'];
+    $array['product_price'] = $_POST['product_price'];
     if (isset($_SESSION['products'])) {
 
         # $_SESSION['products'][] = $array;
@@ -81,10 +82,10 @@ if (isset($_POST)) {
                 <td><a href="products.php" class="nsbutton">Continue Shopping</a> </td>
                 <td>&nbsp;</td>
                 <td>
-                    <form action="cart_checkout.php" method="POST" name="loginForm">
+                    <form action="processcart.php" method="POST" name="loginForm">
            <!-- <input type="hidden" name="user_id" value=0/> -->
                         <input type="hidden" name="cart_details" value="<?php print htmlspecialchars(json_encode($_SESSION['products'])); ?>">
-
+                        <INPUT type="hidden" name="fromcart" value="fromcart"/>
                         <button  name = "Checkout" class="nsbutton" style="float:left;">Checkout</button>
 
                     </form>
