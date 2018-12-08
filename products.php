@@ -48,6 +48,7 @@ $result = mysqli_query($link, $query);
         <a href="products.php?type=mostpopular" class="nsbutton">Top 5 Most popular products</a>
         <a href="products.php" class="nsbutton">All products</a>
         <br/>
+       
         <form method="get">
             <select name="sortby" onchange="this.form.submit();" style="float:left;">
                 <option value="">Sort By</option>

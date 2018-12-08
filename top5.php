@@ -18,6 +18,7 @@ $item = array();
 
 while ($row = mysqli_fetch_assoc($result)) {
      $item["product_image"] = urlencode("http://nasrajan.theeram.net/images/".$row['prod_image']);
+     $item["product_url"] = urlencode("http://nasrajan.theeram.net/product_details.php?id=".$row['id']);
      $item["product_id"] = $row['id'];
      $item["product_name"] = $row['prod_name'];
      $item["product_description"] = utf8_encode(truncate_text($row['prod_description']));
