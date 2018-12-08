@@ -13,6 +13,7 @@ if(!isset($_SESSION['loggedin'])) {
     exit;
 
 }
+
 if (!empty($_GET)) {
     
     //$product_id = $_GET['product_id'];
