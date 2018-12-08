@@ -5,13 +5,13 @@ include_once 'includes/config.php';
 
 
 if (!empty($_GET)){
-    if ($_GET['type'] == "mostvisited") {
+    if (isset($_GET['type']) && $_GET['type'] == "mostvisited") {
         $query = "SELECT p.id, p.prod_name, p.prod_description,p.prod_image, number_visits "
         . "FROM products p, `product_visits` pv "
         . "WHERE p.id = pv.product_id "
         . "ORDER BY number_visits DESC LIMIT 5";
     } 
-    if ($_GET['type'] == "mostpopular") {
+    if (isset($_GET['type']) && $_GET['type'] == "mostpopular") {
        $query = "SELECT p.id, p.prod_name, p.prod_description, p.prod_image, SUM(star) as top "
         . "FROM products p, `product_rating` pr "
         . "WHERE p.id = pr.product_id "
@@ -19,6 +19,13 @@ if (!empty($_GET)){
         . "ORDER BY top DESC LIMIT 5";
         
        
+    }
+    
+    if (isset($_GET['sortby']) && $_GET['sortby']== "priceup"){
+        $query = "select * from products order by prod_price DESC";
+    }
+    if (isset($_GET['sortby']) && $_GET['sortby']== "pricelow"){
+        $query = "select * from products order by prod_price ASC";
     }
 } else {
     $query = "select * from products";
@@ -36,9 +43,20 @@ $result = mysqli_query($link, $query);
 
         <!-- Content -->
         <h2 id="content">Products</h2>
+        <div>
         <a href="products.php?type=mostvisited" class="nsbutton">Top 5 Most visited products</a>
         <a href="products.php?type=mostpopular" class="nsbutton">Top 5 Most popular products</a>
         <a href="products.php" class="nsbutton">All products</a>
+        <br/>
+        <form method="get">
+            <select name="sortby" onchange="this.form.submit();" style="float:left;">
+                <option value="">Sort By</option>
+                <option value="priceup">Price: High to Low</option>
+                <option value="pricelow">Price: Low to High</option>
+            </select>
+        </form>
+        <br/>
+        </div>
         <p>Our little world is filled with hues. Hearty arts offer amateur arts in various categories. This includes Paintings Drawings,
             Digital Photography, Handmade Art, Handmade Crafts, Digital Paintings etc</p>
         <div><a href="previous5.php">See last 5 previously visited products</div>
