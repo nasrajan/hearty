@@ -132,7 +132,9 @@ mysqli_query($link, "UPDATE product_visits SET number_visits = number_visits + 1
                             <?php } 
                             print $ratingsrow['star']." out of 5";
                             ?>
-                                
+                              <p>
+                                  <b><?php print $ratingsrow['username']; ?></b>
+                            </p>    
                             <br/>
                             <p>
                                 <?php print $ratingsrow['review']; ?>

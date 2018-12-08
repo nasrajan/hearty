@@ -77,13 +77,7 @@ if(isset($_POST['submit']))
         <tr><td>phone: '.$phone.'</td></tr>
         <tr><td>Address: '.$text.'</td></tr>
     </table>';
-    $message .= '<table style="width:100%">';
-    $message .= '<tr>'
-               . '<th>Item</price>'
-            . '<th>Price</th>'
-            . '<th>Quantity</th>'
-            . '<th>Total</th>'
-            . '</tr>';
+    
     
     $message .= $messagestr;
     $message .= '</table>';
