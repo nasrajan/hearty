@@ -10,10 +10,10 @@ if (isset($_POST['cart_id'])) {
     $cart_id = $_POST['cart_id'];
 }  
 
-$cart_id = 3;
+
    
 $query = "SELECT p.id, p.prod_name, p.prod_price, s.quantity FROM products p, `shopping_cart` s WHERE p.id = s.product_id AND s.cart_id=".$cart_id;
-//print $query;
+
   $result = mysqli_query($link, $query);
   
  
@@ -41,7 +41,7 @@ if (!empty($result)) {
         $messagestr .= '<tr>';
         $messagestr .=  '<td>'.$item['product_name'].'</td>';
         $messagestr .=  '<td>'.$item['product_price'].'</td>';
-        $messagestr .=  '<td>'.$item['quantity'].'</td>';
+        $messagestr .=  '<td>'.$item['product_quantity'].'</td>';
         $messagestr .=  '<td>'.$item['product_price'] * $item['product_quantity'].'</td>';
        
        $messagestr .=   '</tr>';
@@ -68,7 +68,7 @@ if(isset($_POST['submit']))
     $headers = 'MIME-Version: 1.0' . "\r\n";
     $headers .= "From: " . $email . "\r\n"; // Sender's E-mail
     $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
-
+    $message = "";
     $message .='<table style="width:100%">
         <tr>
             <td>'.$firstname.'</td>
@@ -85,11 +85,11 @@ if(isset($_POST['submit']))
             . '<th>Total</th>'
             . '</tr>';
     
-    $message = $messagestr;
+    $message .= $messagestr;
     $message .= '</table>';
     
     
-    print $message;
+    
 
     if (mail($to, $email, $message, $headers))
     {

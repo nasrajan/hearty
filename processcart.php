@@ -11,9 +11,9 @@ if (isset($_POST)) {
     
     $query = "SELECT MAX(cart_id) FROM shopping_cart";
     $result = mysqli_query($link, $query);
-    $row = mysqli_fetch_row($result);
-    if ($row) {
-     $cart_id = $row[0] + 1;
+    
+    if ($row = mysqli_fetch_row($result)) {
+        $cart_id = $row[0] + 1;
     } else {
         $cart_id = 1;
     }
